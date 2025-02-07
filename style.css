@@ -1,0 +1,11 @@
+table {
+    width: 50%;
+    text-align: center;
+}
+td {
+    border: 2px solid rgb(1, 78, 20);
+    padding: 15px;
+}
+.orange {
+    background-color: orange;
+}
