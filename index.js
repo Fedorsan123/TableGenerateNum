@@ -1,4 +1,3 @@
-
 function generateRandomNumbers(count, min, max) {
     let numbers = [];
     for (let i = 0; i < count; i++) {
@@ -10,23 +9,23 @@ function generateRandomNumbers(count, min, max) {
 function createTable() {
     const numbers = generateRandomNumbers(30, 0, 99);
     const table = document.getElementById("table");
+    let html = "";
     let index = 0;
     
     for (let i = 0; i < 6; i++) {
-        let row = document.createElement("tr");
+        html += "<tr>";
         for (let j = 0; j < 5; j++) {
-            let col = document.createElement("td");
-            col.textContent = numbers[index];
-            if (numbers[index] >= 50) {
-                col.style.backgroundColor = "orange";
-            }
-            row.appendChild(col);
+            let number = numbers[index];
+            let style = number >= 50 ? 'style="background-color: orange;"' : "";
+            html += `<td ${style}>${number}</td>`;
             index++;
         }
-        table.appendChild(row);
+        html += "</tr>";
     }
-    return table
+    
+    table.innerHTML = html;
 }
+
 function foo() {
     const table = document.getElementById("table");
     let rows = table.querySelectorAll("tr");
@@ -34,15 +33,12 @@ function foo() {
     
     if (lastRow.cells.length >= 5) {
         lastRow = document.createElement("tr");
-        table.appendChild(lastRow)
+        table.appendChild(lastRow);
     }
     
     let newNumber = Math.floor(Math.random() * 100);
-    let cell = document.createElement("td");
-    cell.textContent = newNumber;
-    if (newNumber >= 50) {
-        cell.style.backgroundColor = "orange";
-    }
-    lastRow.appendChild(cell);
+    let style = newNumber >= 50 ? 'style="background-color: orange;"' : "";
+    lastRow.innerHTML += `<td ${style}>${newNumber}</td>`;
 }
+
 createTable();
